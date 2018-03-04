@@ -8,6 +8,10 @@ public class Generator : MonoBehaviour {
 	public GameObject wall, floor;
 	public Vector3 maxSize;
 
+	public int blockCount;
+
+	GameObject building;
+
 	// xy = front, zy = side, xz = top
 	bool[,] xy, zy, xz, xyOOB, zyOOB, xzOOB;
 
@@ -20,19 +24,23 @@ public class Generator : MonoBehaviour {
 		zyOOB = MapOOB(side);
 		xzOOB = MapOOB(top);
 
-		Build();
+		StartCoroutine(Build());
 	}
 
-	void Build () {
+	IEnumerator Build () {
+		building = new GameObject("Building");
 		for (int x = 0; x < maxSize.x; x++) {
+			yield return new WaitForEndOfFrame();
 			for (int z = 0; z < maxSize.z; z++) {
 				for (int y = 0; y < maxSize.y; y++) {
 					if (xz[x, z] && !xyOOB[x, y] && !zyOOB[z, y]) {
 						var g = Instantiate(wall, new Vector3(x, y, z), Quaternion.identity);
-						g.transform.parent = transform;
-					} else if (xy[x, y] && zy[z, y] && !xzOOB[x, z]) {
+						g.transform.parent = building.transform;
+						blockCount++;
+					} else if ((xy[x, y] || zy[z, y]) && !xzOOB[x, z] && !xyOOB[x, y] && !zyOOB[z, y]) {
 						var g = Instantiate(floor, new Vector3(x, y, z), Quaternion.identity);
-						g.transform.parent = transform;
+						g.transform.parent = building.transform;
+						blockCount++;
 					}
 				}
 			}

@@ -130,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &128411494
 AudioListener:
   m_ObjectHideFlags: 0
@@ -301,7 +301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   front: {fileID: 2800000, guid: 53c7c026db149fb489b2d3d70234f93d, type: 3}
   side: {fileID: 2800000, guid: 53c7c026db149fb489b2d3d70234f93d, type: 3}
-  top: {fileID: 2800000, guid: d5cc8426364ab2646a47f334b9981ac3, type: 3}
+  top: {fileID: 2800000, guid: 96fe1ac8ce4b7634996c06ade0e5cf8d, type: 3}
   wall: {fileID: 1270797530046022, guid: 70b96a1f88cc78146b92029c0937330a, type: 2}
   floor: {fileID: 1303384480780090, guid: 6331df6e6df06644f9c86713b8408cc1, type: 2}
   maxSize: {x: 11, y: 11, z: 11}
+  blockCount: 0
